@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head', { title }) %>
+<body class="<%= bodyClass %>" data-page="<%= pageId %>">
+    <%- include('../partials/navbar') %>
+
+    <main class="container dashboard-shell">
+        <section class="page-header">
+            <div>
+                <span class="eyebrow">Usuario</span>
+                <h1 id="welcomeTitle">Bienvenido, cargando perfil...</h1>
+                <p id="welcomeCopy">Resumen de tu cuenta.</p>
+            </div>
+
+            <div class="header-actions">
+                <span class="role-chip" id="roleChip">Rol</span>
+                <span class="role-chip role-chip-muted" id="ageChip">Edad</span>
+                <a href="/profile" class="btn-large accent-button waves-effect waves-light">Editar mi cuenta</a>
+                <a id="adminShortcut" href="/dashboard/admin" class="btn-flat ghost-button hide">Ir al panel admin</a>
+            </div>
+        </section>
+
+        <section class="metrics-grid">
+            <article class="metric-surface">
+                <span class="metric-label">Email</span>
+                <strong id="userEmail">--</strong>
+            </article>
+            <article class="metric-surface">
+                <span class="metric-label">Teléfono</span>
+                <strong id="userPhone">--</strong>
+            </article>
+            <article class="metric-surface">
+                <span class="metric-label">Nacimiento</span>
+                <strong id="userBirthdate">--</strong>
+            </article>
+            <article class="metric-surface">
+                <span class="metric-label">Registrado</span>
+                <strong id="userCreatedAt">--</strong>
+            </article>
+        </section>
+
+        <section class="section-card">
+            <div class="section-header">
+                <div>
+                    <span class="eyebrow">Tu resumen</span>
+                    <h2>Datos principales</h2>
+                </div>
+            </div>
+
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <span>Nombre completo</span>
+                    <strong id="fullNameCard">--</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Roles</span>
+                    <strong id="rolesCard">--</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Estado</span>
+                    <strong>Sesión activa</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Perfil</span>
+                    <strong>Disponible para edición</strong>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('../partials/scripts', { pageScript }) %>
+</body>
+</html>

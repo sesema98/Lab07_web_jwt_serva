@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head', { title }) %>
+<body class="<%= bodyClass %>" data-page="<%= pageId %>">
+    <main class="auth-shell-main">
+        <section class="auth-card auth-card-wide">
+            <div class="auth-card-header">
+                <span class="auth-badge">Registro</span>
+                <h1>Crear cuenta</h1>
+                <p>Completa tus datos y continúa.</p>
+            </div>
+
+            <div class="age-inline">
+                <span>Edad</span>
+                <strong id="agePreview">--</strong>
+            </div>
+
+            <form id="signUpForm" class="stack-form">
+                <div class="form-two-columns">
+                    <div class="input-field">
+                        <input id="name" name="name" type="text" required>
+                        <label for="name">Nombre</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input id="lastName" name="lastName" type="text" required>
+                        <label for="lastName">Apellido</label>
+                    </div>
+                </div>
+
+                <div class="form-two-columns">
+                    <div class="input-field">
+                        <input id="phoneNumber" name="phoneNumber" type="tel" required>
+                        <label for="phoneNumber">Teléfono</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input id="birthdate" name="birthdate" type="date" required>
+                        <label class="active" for="birthdate">Fecha de nacimiento</label>
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <input id="email" name="email" type="email" required autocomplete="email">
+                    <label for="email">Email</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="password" name="password" type="password" required minlength="6" autocomplete="new-password">
+                    <label for="password">Password</label>
+                </div>
+
+                <button id="signUpButton" type="submit" class="btn-large waves-effect waves-light accent-button full-width">
+                    Crear cuenta
+                </button>
+            </form>
+
+            <p class="helper-text-row">
+                ¿Ya tienes cuenta?
+                <a href="/signIn">Iniciar sesión</a>
+            </p>
+        </section>
+    </main>
+
+    <%- include('../partials/scripts', { pageScript }) %>
+</body>
+</html>

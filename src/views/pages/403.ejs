@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head', { title }) %>
+<body class="<%= bodyClass %>" data-page="<%= pageId %>">
+    <main class="status-layout">
+        <section class="status-card">
+            <span class="eyebrow">403</span>
+            <h1>Acceso denegado</h1>
+            <p>No tienes permisos para entrar a esta página.</p>
+            <div class="status-actions">
+                <a href="/dashboard" class="btn-large accent-button waves-effect waves-light">Ir al dashboard</a>
+                <a href="/signIn" class="btn-flat ghost-button">Volver a Sign In</a>
+            </div>
+        </section>
+    </main>
+
+    <%- include('../partials/scripts', { pageScript }) %>
+</body>
+</html>

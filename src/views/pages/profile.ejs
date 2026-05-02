@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head', { title }) %>
+<body class="<%= bodyClass %>" data-page="<%= pageId %>">
+    <%- include('../partials/navbar') %>
+
+    <main class="container dashboard-shell">
+        <section class="section-card profile-shell">
+            <div class="profile-summary">
+                <span class="eyebrow">Mi cuenta</span>
+                <h1 id="profileHeading">Cargando perfil...</h1>
+                <p id="profileSubheading">Actualiza tu información.</p>
+
+                <div class="summary-stack">
+                    <div class="summary-item">
+                        <span>Roles</span>
+                        <strong id="profileRoles">--</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>Registrado</span>
+                        <strong id="profileCreatedAt">--</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>Edad</span>
+                        <strong id="profileAgeSummary">--</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-form-card">
+                <form id="profileForm" class="stack-form">
+                    <div class="form-two-columns">
+                        <div class="input-field">
+                            <input id="profileName" name="name" type="text" required>
+                            <label for="profileName">Nombre</label>
+                        </div>
+
+                        <div class="input-field">
+                            <input id="profileLastName" name="lastName" type="text" required>
+                            <label for="profileLastName">Apellido</label>
+                        </div>
+                    </div>
+
+                    <div class="form-two-columns">
+                        <div class="input-field">
+                            <input id="profilePhoneNumber" name="phoneNumber" type="tel" required>
+                            <label for="profilePhoneNumber">Teléfono</label>
+                        </div>
+
+                        <div class="input-field">
+                            <input id="profileBirthdate" name="birthdate" type="date" required>
+                            <label class="active" for="profileBirthdate">Fecha de nacimiento</label>
+                        </div>
+                    </div>
+
+                    <div class="form-two-columns">
+                        <div class="input-field">
+                            <input id="profileEmail" name="email" type="email" required>
+                            <label for="profileEmail">Email</label>
+                        </div>
+
+                        <div class="input-field">
+                            <input id="profileAge" name="age" type="text" readonly>
+                            <label class="active" for="profileAge">Edad calculada</label>
+                        </div>
+                    </div>
+
+                    <button id="profileSaveButton" type="submit" class="btn-large waves-effect waves-light accent-button">
+                        Guardar cambios
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <%- include('../partials/scripts', { pageScript }) %>
+</body>
+</html>

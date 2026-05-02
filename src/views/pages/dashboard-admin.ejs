@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head', { title }) %>
+<body class="<%= bodyClass %>" data-page="<%= pageId %>">
+    <%- include('../partials/navbar') %>
+
+    <main class="container dashboard-shell">
+        <section class="page-header">
+            <div>
+                <span class="eyebrow">Administrador</span>
+                <h1>Usuarios registrados</h1>
+                <p>Listado general y detalle por usuario.</p>
+            </div>
+            <div class="chip-row">
+                <span class="role-chip">Solo admin</span>
+                <span class="role-chip role-chip-muted">Acceso protegido</span>
+            </div>
+        </section>
+
+        <section class="metrics-grid">
+            <article class="metric-surface">
+                <span class="metric-label">Usuarios totales</span>
+                <strong id="totalUsers">0</strong>
+            </article>
+            <article class="metric-surface">
+                <span class="metric-label">Administradores</span>
+                <strong id="adminUsers">0</strong>
+            </article>
+            <article class="metric-surface">
+                <span class="metric-label">Usuarios estándar</span>
+                <strong id="standardUsers">0</strong>
+            </article>
+            <article class="metric-surface">
+                <span class="metric-label">Último registro</span>
+                <strong id="latestRegistered">--</strong>
+            </article>
+        </section>
+
+        <section class="section-card">
+            <div class="section-header">
+                <div>
+                    <span class="eyebrow">Listado</span>
+                    <h2>Usuarios registrados</h2>
+                </div>
+            </div>
+
+            <div class="table-shell">
+                <table class="highlight responsive-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th>Edad</th>
+                            <th>Roles</th>
+                            <th>Registro</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div id="userDetailModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <span class="eyebrow">Detalle del usuario</span>
+            <h4 id="modalUserName">Cargando...</h4>
+            <div class="detail-grid detail-grid-compact" id="modalUserDetail"></div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close btn-flat">Cerrar</a>
+        </div>
+    </div>
+
+    <%- include('../partials/scripts', { pageScript }) %>
+</body>
+</html>

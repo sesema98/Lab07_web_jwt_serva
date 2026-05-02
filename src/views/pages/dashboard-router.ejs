@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head', { title }) %>
+<body class="<%= bodyClass %>" data-page="<%= pageId %>">
+    <%- include('../partials/navbar') %>
+
+    <main class="container dashboard-shell">
+        <section class="section-card center-align">
+            <span class="eyebrow">Dashboard</span>
+            <h1>Redirigiendo...</h1>
+            <p>Estamos abriendo tu panel.</p>
+            <div class="preloader-wrapper small active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left"><div class="circle"></div></div>
+                    <div class="gap-patch"><div class="circle"></div></div>
+                    <div class="circle-clipper right"><div class="circle"></div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('../partials/scripts', { pageScript }) %>
+</body>
+</html>

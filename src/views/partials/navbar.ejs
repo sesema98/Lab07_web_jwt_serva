@@ -1,0 +1,27 @@
+<header class="topbar-shell">
+    <nav class="topbar">
+        <div class="nav-wrapper container">
+            <a href="/dashboard" class="brand-logo">Auth Panel</a>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/dashboard" data-nav="dashboard">Inicio</a></li>
+                <li><a href="/dashboard/user" data-nav="dashboard-user">Panel usuario</a></li>
+                <li><a href="/dashboard/admin" data-nav="dashboard-admin" class="admin-only">Panel admin</a></li>
+                <li><a href="/profile" data-nav="profile">Mi cuenta</a></li>
+                <li><span class="nav-badge" data-user-badge>Sesión activa</span></li>
+                <li><a href="#" data-logout>Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-nav">
+        <li class="sidenav-brand">Auth Panel</li>
+        <li><a href="/dashboard" data-nav="dashboard">Inicio</a></li>
+        <li><a href="/dashboard/user" data-nav="dashboard-user">Panel usuario</a></li>
+        <li><a href="/dashboard/admin" data-nav="dashboard-admin" class="admin-only">Panel admin</a></li>
+        <li><a href="/profile" data-nav="profile">Mi cuenta</a></li>
+        <li><a href="#" data-logout>Cerrar sesión</a></li>
+    </ul>
+</header>
