@@ -34,12 +34,44 @@ app.use('/api/users', userRoutes);
 app.get('/health', (req, res) => res.status(200).json({ ok: true }));
 
 const PORT = process.env.PORT || 3000;
-const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI || process.env.MONGO_URL;
+const mongoEnvKey = process.env.MONGODB_URI
+    ? 'MONGODB_URI'
+    : process.env.MONGO_URI
+        ? 'MONGO_URI'
+        : 'MONGO_URL';
+const rawMongoUri = process.env.MONGODB_URI || process.env.MONGO_URI || process.env.MONGO_URL;
+
+function ensureMongoDatabase(uri, defaultDbName) {
+    try {
+        const parsed = new URL(uri);
+
+        if (!parsed.pathname || parsed.pathname === '/') {
+            parsed.pathname = `/${defaultDbName}`;
+        }
+
+        return parsed.toString();
+    } catch {
+        return uri;
+    }
+}
+
+function getMongoDatabaseName(uri) {
+    try {
+        const parsed = new URL(uri);
+        return parsed.pathname.replace(/^\/+/, '') || 'unknown';
+    } catch {
+        return 'unknown';
+    }
+}
+
+const mongoUri = rawMongoUri ? ensureMongoDatabase(rawMongoUri, 'auth_db') : rawMongoUri;
 
 if (!mongoUri) {
     console.error('Falta la variable de entorno de MongoDB. Usa MONGODB_URI, MONGO_URI o MONGO_URL.');
     process.exit(1);
 }
+
+console.log(`Mongo config: env=${mongoEnvKey}, db=${getMongoDatabaseName(mongoUri)}`);
 
 mongoose.connect(mongoUri, { autoIndex: true })
     .then( async () => {
@@ -49,7 +81,9 @@ mongoose.connect(mongoUri, { autoIndex: true })
         app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
     })
     .catch(err => {
-        console.error('Error al conectar con Mongo:', err);
+        console.error('Error al conectar con Mongo:', err?.stack || err);
+        if (err?.cause) console.error('Mongo cause:', err.cause);
+        if (err?.reason) console.error('Mongo reason:', err.reason);
         process.exit(1);
     });
 
@@ -73,7 +107,8 @@ app.use((err, req, res, next) => {
 
     if (req.path.startsWith('/api/')) {
         return res.status(err.status || 500).json({
-            message: err.message || 'Error interno del servidor'
+            message: err.message || 'Error interno del servidor',
+            field: err.field || null
         });
     }
 
