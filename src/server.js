@@ -34,8 +34,14 @@ app.use('/api/users', userRoutes);
 app.get('/health', (req, res) => res.status(200).json({ ok: true }));
 
 const PORT = process.env.PORT || 3000;
+const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI || process.env.MONGO_URL;
 
-mongoose.connect(process.env.MONGODB_URI, { autoIndex: true })
+if (!mongoUri) {
+    console.error('Falta la variable de entorno de MongoDB. Usa MONGODB_URI, MONGO_URI o MONGO_URL.');
+    process.exit(1);
+}
+
+mongoose.connect(mongoUri, { autoIndex: true })
     .then( async () => {
         console.log('Mongo connected');
         await seedRoles();

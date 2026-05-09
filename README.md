@@ -118,6 +118,33 @@ Health check:
 http://localhost:3000/health
 ```
 
+## Despliegue en Render
+
+El repositorio incluye:
+
+- `.github/workflows/render-deploy.yml`: workflow de GitHub Actions que instala dependencias y valida sintaxis en cada `push` y `pull_request` hacia `main`.
+- `render.yaml`: Blueprint de Render con `autoDeployTrigger: checksPass`, por lo que el despliegue automático ocurre solo si los checks de GitHub pasan.
+- `.node-version`: fija la versión de Node usada por CI y Render.
+
+### Pasos de configuración
+
+1. Sube este proyecto a GitHub.
+2. En Render, crea un `Web Service` desde este repositorio o crea el servicio usando el `render.yaml`.
+3. Verifica que el servicio quede enlazado a la rama `main`.
+4. En Render, define la variable `MONGODB_URI` con tu cadena de conexión de MongoDB Atlas.
+5. Si el servicio ya existía antes del `render.yaml`, confirma en Render que `Auto-Deploy` esté en `After CI Checks Pass`.
+6. En MongoDB Atlas, agrega acceso de red para Render y confirma que el usuario de base de datos tenga permisos sobre `auth_db`.
+
+### Variables esperadas en Render
+
+```env
+PORT=10000
+MONGODB_URI=mongodb+srv://...
+JWT_SECRET=<generado por Render o definido manualmente>
+JWT_EXPIRES_IN=1h
+BCRYPT_SALT_ROUNDS=10
+```
+
 ## Usuarios de prueba
 
 Al iniciar la aplicación se crean usuarios semilla si no existen:
